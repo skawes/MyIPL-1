@@ -24,7 +24,7 @@ public class Register extends AppCompatActivity {
         e_name = findViewById(R.id.name);
         e_password = findViewById(R.id.password);
         e_contact = findViewById(R.id.contact);
-        e_username = findViewById(R.id.username);
+        e_username = findViewById(R.id.rank);
         progressBar = findViewById(R.id.progressBar);
         showPassword = findViewById(R.id.showPassword);
         e_name.setText(null);

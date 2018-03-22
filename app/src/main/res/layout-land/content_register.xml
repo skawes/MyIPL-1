@@ -79,9 +79,9 @@
         android:textAllCaps="true"
         android:textSize="18sp"
         android:typeface="monospace"
-        app:layout_constraintEnd_toEndOf="@+id/username"
-        app:layout_constraintStart_toStartOf="@+id/username"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintEnd_toEndOf="@+id/rank"
+        app:layout_constraintStart_toStartOf="@+id/rank"
+        app:layout_constraintTop_toBottomOf="@+id/rank"
         tools:text="Password" />
 
     <EditText
@@ -103,7 +103,7 @@
         tools:text="Contact" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/rank"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

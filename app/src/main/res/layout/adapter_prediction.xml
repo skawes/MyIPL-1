@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/rank"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="2dp"
@@ -23,12 +23,12 @@
         android:textSize="14sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/umatch1"
+        app:layout_constraintEnd_toStartOf="@+id/username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/umatch2"
+        android:id="@+id/points"
         android:layout_width="65dp"
         android:layout_height="0dp"
         android:layout_marginEnd="2dp"
@@ -42,10 +42,11 @@
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="2dp" />
 
     <TextView
-        android:id="@+id/umatch1"
+        android:id="@+id/username"
         android:layout_width="65dp"
         android:layout_height="0dp"
         android:layout_marginEnd="2dp"
@@ -58,7 +59,8 @@
         android:textSize="14sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/umatch2"
+        app:layout_constraintEnd_toStartOf="@+id/points"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.6"
+        android:layout_marginRight="2dp" />
 </android.support.constraint.ConstraintLayout>
