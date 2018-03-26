@@ -1,6 +1,7 @@
 package nf.co.myipl.myipl;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -29,6 +31,7 @@ public class PostLoginActivity extends AppCompatActivity
     static ProgressBar progressBar;
     String userName = "", userID = "";
     private long back_pressed;
+    Context ctx;
 
     public static boolean connection(Context ctx) {
         ConnectivityManager connectivityManager = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -104,26 +107,31 @@ public class PostLoginActivity extends AppCompatActivity
     }
 
     public void givePrediction2a(View view) {
+        ctx = this;
         if (connection(this)) {
-            progressBar.setVisibility(View.VISIBLE);
-            team2a.setClickable(false);
-            team2b.setClickable(false);
-            team1a.setClickable(false);
-            team1b.setClickable(false);
-            team2b.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    team2a.setClickable(true);
-                    team2b.setClickable(true);
-                    team1b.setClickable(true);
-                    team1a.setClickable(true);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Prediction");
+            builder.setMessage("Are you sure you want to choose " + team2a.getText().toString().toUpperCase() + "?");
+            builder.setIcon(R.mipmap.mainicon);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    if (BackgroundTask.backgroundToast != null)
+                        BackgroundTask.backgroundToast.cancel();
+                    fetchData process = new fetchData(ctx);
+                    process.execute(userID, "match1", team2a.getText().toString());
+                    dialog.dismiss();
                 }
-            }, 1000);
 
-            if (BackgroundTask.backgroundToast != null)
-                BackgroundTask.backgroundToast.cancel();
-            fetchData process = new fetchData(this);
-            process.execute(userID, "match1", team2a.getText().toString());
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+
         } else {
             networkToast = Toast.makeText(this, "Please check your Internet Connection", Toast.LENGTH_SHORT);
             networkToast.show();
@@ -131,26 +139,30 @@ public class PostLoginActivity extends AppCompatActivity
     }
 
     public void givePrediction2b(View view) {
+        ctx = this;
         if (connection(this)) {
-            progressBar.setVisibility(View.VISIBLE);
-            team2a.setClickable(false);
-            team2b.setClickable(false);
-            team1a.setClickable(false);
-            team1b.setClickable(false);
-            team2b.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    team2a.setClickable(true);
-                    team2b.setClickable(true);
-                    team1b.setClickable(true);
-                    team1a.setClickable(true);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Prediction");
+            builder.setMessage("Are you sure you want to choose " + team2b.getText().toString().toUpperCase() + "?");
+            builder.setIcon(R.mipmap.mainicon);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    if (BackgroundTask.backgroundToast != null)
+                        BackgroundTask.backgroundToast.cancel();
+                    fetchData process = new fetchData(ctx);
+                    process.execute(userID, "match1", team2b.getText().toString());
+                    dialog.dismiss();
                 }
-            }, 1000);
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
 
-            if (BackgroundTask.backgroundToast != null)
-                BackgroundTask.backgroundToast.cancel();
-            fetchData process = new fetchData(this);
-            process.execute(userID, "match1", team2b.getText().toString());
         } else {
             networkToast = Toast.makeText(this, "Please check your Internet Connection", Toast.LENGTH_SHORT);
             networkToast.show();
@@ -158,27 +170,31 @@ public class PostLoginActivity extends AppCompatActivity
     }
 
     public void givePrediction1a(View view) {
+        ctx = this;
         if (connection(this)) {
-            progressBar.setVisibility(View.VISIBLE);
-            team1a.setClickable(false);
-            team1b.setClickable(false);
-            team2a.setClickable(false);
-            team2b.setClickable(false);
-
-            team1a.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    team2a.setClickable(true);
-                    team2b.setClickable(true);
-                    team1b.setClickable(true);
-                    team1a.setClickable(true);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Prediction");
+            builder.setMessage("Are you sure you want to choose " + team1a.getText().toString().toUpperCase() + "?");
+            builder.setIcon(R.mipmap.mainicon);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    if (BackgroundTask.backgroundToast != null)
+                        BackgroundTask.backgroundToast.cancel();
+                    fetchData process = new fetchData(ctx);
+                    process.execute(userID, "match2", team1a.getText().toString());
+                    dialog.dismiss();
                 }
-            }, 1000);
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
 
-            if (BackgroundTask.backgroundToast != null)
-                BackgroundTask.backgroundToast.cancel();
-            fetchData process = new fetchData(this);
-            process.execute(userID, "match2", team1a.getText().toString());
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+
         } else {
             networkToast = Toast.makeText(this, "Please check your Internet Connection", Toast.LENGTH_SHORT);
             networkToast.show();
@@ -186,27 +202,30 @@ public class PostLoginActivity extends AppCompatActivity
     }
 
     public void givePrediction1b(View view) {
+        ctx = this;
         if (connection(this)) {
-            progressBar.setVisibility(View.VISIBLE);
-            team1a.setClickable(false);
-            team1b.setClickable(false);
-            team2a.setClickable(false);
-            team2b.setClickable(false);
-
-            team1b.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    team2a.setClickable(true);
-                    team2b.setClickable(true);
-                    team1b.setClickable(true);
-                    team1a.setClickable(true);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Prediction");
+            builder.setMessage("Are you sure you want to choose " + team1b.getText().toString().toUpperCase() + "?");
+            builder.setIcon(R.mipmap.mainicon);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    if (BackgroundTask.backgroundToast != null)
+                        BackgroundTask.backgroundToast.cancel();
+                    fetchData process = new fetchData(ctx);
+                    process.execute(userID, "match2", team1b.getText().toString());
+                    dialog.dismiss();
                 }
-            }, 1000);
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
 
-            if (BackgroundTask.backgroundToast != null)
-                BackgroundTask.backgroundToast.cancel();
-            fetchData process = new fetchData(this);
-            process.execute(userID, "match2", team1b.getText().toString());
         } else {
             networkToast = Toast.makeText(this, "Please check your Internet Connection", Toast.LENGTH_SHORT);
             networkToast.show();
@@ -259,13 +278,30 @@ public class PostLoginActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.logout) {
-            Log.d("LOGOUTTTT ", "Username " + userName + " UserId " + userID);
-            MainActivity.sharedPreferences.edit().putString("status", "LOGOUT").commit();
-            Log.d("LOGOUTTT SHARED ", "status: " + MainActivity.sharedPreferences.getString("status", null));
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("status", "LOGOUT");
-            startActivity(intent);
-            finish();
+            ctx = this;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.app_name);
+            builder.setMessage("Are you sure you want Logout?");
+            builder.setIcon(R.mipmap.mainicon);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Log.d("LOGOUTTTT ", "Username " + userName + " UserId " + userID);
+                    MainActivity.sharedPreferences.edit().putString("status", "LOGOUT").commit();
+                    Log.d("LOGOUTTT SHARED ", "status: " + MainActivity.sharedPreferences.getString("status", null));
+                    Intent intent = new Intent(ctx, MainActivity.class);
+                    intent.putExtra("status", "LOGOUT");
+                    startActivity(intent);
+                    finish();
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         return super.onOptionsItemSelected(item);

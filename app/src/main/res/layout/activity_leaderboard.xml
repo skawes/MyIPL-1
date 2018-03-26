@@ -8,10 +8,10 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#414344"
-        android:minHeight="?a"
+        android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,8 @@
         android:textStyle="bold"
         app:fontFamily="casual"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="37dp" />
 
     <TextView
         android:id="@+id/textView11"
@@ -74,6 +75,7 @@
         android:textStyle="bold"
         app:fontFamily="casual"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="37dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -53,8 +53,8 @@ public class fetchData extends AsyncTask<String, Void, String> {
                 data += line;
             }
             JSONObject JO = new JSONObject(data);
-            //dateTime = JO.getString("formatted");
-            dateTime = "2018-02-21 12:00:00";
+            dateTime = JO.getString("formatted");
+            //dateTime = "2018-02-21 12:00:00";
             // date = dateTime.substring(0, 10).toCharArray();
             time = dateTime.substring(11, 19).toCharArray();
             //Log.d("fetchData TIMEEE ","" + time);

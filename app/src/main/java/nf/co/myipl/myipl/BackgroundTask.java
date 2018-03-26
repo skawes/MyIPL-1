@@ -118,7 +118,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 } else if (response_api.equals("failure"))
                     return "Username already exists";
                 else
-                    return "Sorry, Our servers are facing some issues.Please try again later";
+                    return "Registration is now closed.";
 
             } else
                 return "Please check your Internet Connection";
